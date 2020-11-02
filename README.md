@@ -7,9 +7,9 @@ This is a trivia training app, designed per code challenge.
  
 ## Running the program
  * Navigate to download location. In the same directory as project files, insert a JSON file containing your trivia data. Such data must exist as an array of at **least** 10 JSON objects, such that **each** object contains the following key-value pairs: 
-   * 1 "question" (string)
-   * 3 "incorrect" answers (array of strings)
-   * 1 "correct" answer (string)
+   * "question": (1 string - this is the question text)
+   * "incorrect": (array of 3 strings - these are the incorrect options)
+   * "correct": (1 string - this is the correct answer to the question)
  * Open CMD or terminal and navigate to the project directory. Run **python controller.py**.
 
 ## Features
