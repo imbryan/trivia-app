@@ -2,6 +2,7 @@
 This is a trivia training app, designed per code challenge.
 
 ## Requirements
+ * Desktop environment (uses GUI)
  * Python 3.7
  
 ## Running the program
