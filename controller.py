@@ -1,3 +1,5 @@
+# Author: Bryan Grigorie
+
 from model import Question
 from view import View
 import json, random, glob
@@ -81,7 +83,7 @@ class Controller:
         if correct: self.view.score = self.view.score + 1
 
         # Give user a notification
-        self.view.popup_window("Notification", f"{correct}! The answer was {correct_option}: {self.selected_questions[current_index].correct}\n\nCurrent score: {self.view.score}")
+        self.view.popup_window("Notification", f"{correct}! The answer was {correct_option}: {self.selected_questions[current_index].correct}")
 
         # Next question
         current_index += 1

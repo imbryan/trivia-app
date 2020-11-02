@@ -1,8 +1,8 @@
+# Author: Bryan Grigorie
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
-import random, json
-from model import Question
 
 
 class View(tk.Tk):
