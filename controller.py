@@ -103,7 +103,7 @@ class Controller:
                 self.view.C_var.set(answers[2])
                 self.view.D_var.set(answers[3])
             except:
-                print(f"Question {current_index} does not have 4 options")
+                print(f"Question {current_index + 1} does not have 4 options")
         # If the round has ended
         else:
             self.view.popup_window("Result", f"Final score: {self.view.score}\n\nThank you for playing!")
