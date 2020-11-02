@@ -8,7 +8,7 @@ from model import Question
 class View(tk.Tk):
 
     # Some default sizes for consistency
-    PAD = 10
+    PAD = 1
     BUTTON_WIDTH = 15
 
     def __init__(self, controller):
@@ -59,25 +59,25 @@ class View(tk.Tk):
 
         # Answer frame widgets
         option_a = ttk.Button(answer_frame, textvariable=self.A_var,
-                              command=lambda: self.controller.on_button_click("A"))
-        option_a.pack(side="left", expand=True)
+                              command=lambda button="A": self.controller.on_button_click("A"))
+        option_a.pack(side="left", expand=True, padx=(self.PAD, self.PAD))
 
         option_b = ttk.Button(answer_frame, textvariable=self.B_var,
-                              command=lambda: self.controller.on_button_click("B"))
-        option_b.pack(side="left", expand=True)
+                              command=lambda button="B": self.controller.on_button_click("B"))
+        option_b.pack(side="left", expand=True, padx=(self.PAD, self.PAD))
 
         option_c = ttk.Button(answer_frame, textvariable=self.C_var,
-                              command=lambda: self.controller.on_button_click("C"))
-        option_c.pack(side="left", expand=True)
+                              command=lambda button="C": self.controller.on_button_click("C"))
+        option_c.pack(side="left", expand=True, padx=(self.PAD, self.PAD))
 
         option_d = ttk.Button(answer_frame, textvariable=self.D_var,
-                              command=lambda: self.controller.on_button_click("D"))
-        option_d.pack(side="left", expand=True)
+                              command=lambda button="D": self.controller.on_button_click("D"))
+        option_d.pack(side="left", expand=True, padx=(self.PAD, self.PAD))
 
         # Packing frames
         question_frame.pack(side="top")
-        answer_frame.pack(side="top")
-        frame.pack(side="top")
+        answer_frame.pack(side="top", pady=(self.PAD*5,))
+        frame.pack(side="top", pady=(self.PAD*10,self.PAD*10), padx=(self.PAD*7.5,self.PAD*7.5))
 
     @staticmethod
     def popup_window(title, message):

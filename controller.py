@@ -17,10 +17,13 @@ class Controller:
 
         self.view.question_var.set("1. " + self.selected_questions[0].question)
         answers = self.shuffle_answers(0)
-        self.view.A_var.set(answers[0])
-        self.view.B_var.set(answers[1])
-        self.view.C_var.set(answers[2])
-        self.view.D_var.set(answers[3])
+        try:
+            self.view.A_var.set(answers[0])
+            self.view.B_var.set(answers[1])
+            self.view.C_var.set(answers[2])
+            self.view.D_var.set(answers[3])
+        except:
+            print(f"Question {self.view.current_question} does not have 4 options")
 
         self.view.main()
 
@@ -61,11 +64,13 @@ class Controller:
         random.shuffle(answers)
         return answers
 
+    # The program continues when buttons are clicked
     def on_button_click(self, option):
         correct = False
         correct_option = str()
         current_index = self.view.current_question
 
+        # Assessing the correct option
         if self.selected_questions[current_index].correct == self.view.A_var.get(): correct_option = "A"
         elif self.selected_questions[current_index].correct == self.view.B_var.get(): correct_option = "B"
         elif self.selected_questions[current_index].correct == self.view.C_var.get(): correct_option = "C"
@@ -75,18 +80,31 @@ class Controller:
 
         if correct: self.view.score = self.view.score + 1
 
+        # Give user a notification
         self.view.popup_window("Notification", f"{correct}! The answer was {correct_option}: {self.selected_questions[current_index].correct}\n\nCurrent score: {self.view.score}")
 
+        # Next question
         current_index += 1
         self.view.current_question = current_index
 
+        # If the round is still going
         if current_index < 10:
-            self.view.question_var.set(f"{current_index + 1}. " + self.selected_questions[current_index].question)
-            answers = self.shuffle_answers(current_index)
-            self.view.A_var.set(answers[0])
-            self.view.B_var.set(answers[1])
-            self.view.C_var.set(answers[2])
-            self.view.D_var.set(answers[3])
+            try:
+                # Just in case there are questions with less than four options
+                self.view.A_var.set("")
+                self.view.B_var.set("")
+                self.view.C_var.set("")
+                self.view.D_var.set("")
+
+                self.view.question_var.set(f"{current_index + 1}. " + self.selected_questions[current_index].question)
+                answers = self.shuffle_answers(current_index)
+                self.view.A_var.set(answers[0])
+                self.view.B_var.set(answers[1])
+                self.view.C_var.set(answers[2])
+                self.view.D_var.set(answers[3])
+            except:
+                print(f"Question {current_index} does not have 4 options")
+        # If the round has ended
         else:
             self.view.popup_window("Result", f"Final score: {self.view.score}\n\nThank you for playing!")
             self.view.destroy()
